@@ -1,0 +1,33 @@
+
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+    <div class="heading">
+
+        <h1><%= Title %></h1>
+        
+    </div>
+
+    <form class="inputForm" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required>
+        <button type="submit" name="list" value="<%= Title %>"><span>Add</span></button>
+    </form>
+
+    <div class="box">
+
+        <% items.forEach(item => { %>
+            <form action="/delete" method="post">
+                <div class="items-list">
+                    <input type="checkbox" name="checkbox" onChange="this.form.submit()" value="<%= item._id %>">
+                    <p>
+                        <%= item.name %>
+                    </p>
+                </div>
+                <input type="hidden" name="ListName" value="<%= Title %>">
+            </form>         
+        <%  }); %>
+    </div>
+        
+</div>
+
+<%- include("partials/footer.ejs") %>
